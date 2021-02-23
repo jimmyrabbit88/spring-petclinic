@@ -43,7 +43,7 @@ class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vets.findAll());
 		model.put("vets", vets);
-		return "vetss/vetList";
+		return "vets/vetList";
 	}
 
 	@GetMapping({ "/vets" })
