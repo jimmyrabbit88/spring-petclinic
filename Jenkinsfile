@@ -8,8 +8,10 @@ pipeline {
             }
         }
         stage("Results"){
-            junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts 'target/*.jar'
+            steps{
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts 'target/*.jar'
+            }
         } 
     }
     post {
