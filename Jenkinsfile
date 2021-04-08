@@ -1,12 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage("build") {
+        stage("Build") {
             steps{
                 bat "mvn -version"
-                bat "mvn clean package/"
+                bat "mvn clean package"
             }
-        }  
+        }
+        stage("Results"){
+            junit '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts 'target/*.jar'
+        } 
     }
     post {
         always {
