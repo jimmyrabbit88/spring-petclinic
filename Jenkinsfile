@@ -29,6 +29,9 @@ pipeline {
                 }
             }
         }
+        stage("Build Docker Image"){
+            bat 'docker build -t jimmyrabbit88/pc:2.0.0 .'
+        }
     }
     post {
         always {
