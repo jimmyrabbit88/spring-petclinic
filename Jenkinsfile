@@ -31,7 +31,7 @@ pipeline {
         }
         stage("Build Docker Image"){
             steps{
-                bat 'docker build -t jimmyrabbit88/pc:2.0.0 .'
+                bat 'docker build -t jimmyrabbit88/pet_clinic_1:2.0.0 .'
             }
         }
     }
