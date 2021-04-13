@@ -9,10 +9,14 @@ pipeline {
                 bat "mvn clean package"
             }
         }
-        stage("Results"){
+        stage("Test"){
             steps{
-                junit '**/target/surefire-reports/TEST-*.xml'
-                archiveArtifacts 'target/*.jar'
+                bat 'mvn test'
+            }
+            post{
+                always{
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
             }
         }
         stage("Deploy"){
