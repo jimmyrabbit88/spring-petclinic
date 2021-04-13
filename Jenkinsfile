@@ -1,16 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image "maven:3.8.1-jdk-11"
-        }
-    }
+    agent any
 
 
     stages {
         stage("Build") {
             steps{
                 bat "mvn -version"
-                bat "mvn clean package"
+                bat "mvn clean compile"
             }
         }
         stage("Results"){
@@ -18,7 +14,17 @@ pipeline {
                 junit '**/target/surefire-reports/TEST-*.xml'
                 archiveArtifacts 'target/*.jar'
             }
-        } 
+        }
+        stage("Deploy"){
+            steps{
+                bat "mvn package"
+            }
+            post{
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
     }
     post {
         always {
