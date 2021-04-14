@@ -47,9 +47,9 @@ pipeline {
         stage("Deploy Container"){
             steps{
                 sshagent(['aws-rem']){
-                    //sh "ssh -o StrictHostKeyChecking=no ec2-user@18-202-240-67 docker stop pet_clinic || true"
-                    //sh "ssh -o StrictHostKeyChecking=no ec2-user@18-202-240-67 docker rm pet_clinic || true"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@18-202-240-67 docker run -p 8080:8080 -d --name pet_clinic jimmyrabbit88/pet_clinic_1:2.0.0"
+                    //sh "ssh -o StrictHostKeyChecking=no ec2-user@54.78.252.14 docker stop pet_clinic || true"
+                    //sh "ssh -o StrictHostKeyChecking=no ec2-user@54.78.252.14 docker rm pet_clinic || true"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@54.78.252.14 docker run -p 8080:8080 -d --name pet_clinic jimmyrabbit88/pet_clinic_1:2.0.0"
                 }
             }
         }
