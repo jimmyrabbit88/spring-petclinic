@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                bat "mvn package"
+                bat "mvn clean package"
             }
             post{
                 success {
