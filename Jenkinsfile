@@ -5,13 +5,13 @@ pipeline {
     stages {
         stage("Build") {
             steps{
-                bat "mvn -version"
-                bat "mvn clean package"
+                sh "mvn -version"
+                sh "mvn clean package"
             }
         }
         stage("Test"){
             steps{
-                bat 'mvn test'
+                sh 'mvn test'
             }
             post{
                 always{
@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                bat "mvn package"
+                sh "mvn package"
             }
             post{
                 success {
@@ -31,7 +31,7 @@ pipeline {
         }
         stage("Build Docker Image"){
             steps{
-                bat 'docker build -t jimmyrabbit88/pet_clinic_1:2.0.0 .'
+                sh 'docker build -t jimmyrabbit88/pet_clinic_1:2.0.0 .'
             }
         }
     }
