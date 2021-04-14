@@ -34,6 +34,16 @@ pipeline {
                 bat 'docker build -t jimmyrabbit88/pet_clinic_1:2.0.0 .'
             }
         }
+        stage("Push Docker Image"){
+            steps{
+                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                    bat "docker login -u jimmyrabbit88 -p ${dockerHubPwd}"
+                }
+                bat 'docker push jimmyrabbit88/pet_clinic_1:2.0.0'
+
+            }
+        }
+
     }
     post {
         always {
