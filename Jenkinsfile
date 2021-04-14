@@ -44,6 +44,15 @@ pipeline {
             }
         }
 
+        stage("Deploy Container"){
+            steps{
+                def dockerRun = 'docker run -p 8080:8080 -d -name pet_clinic jimmyrabbit88/pet_clinic_1:2.0.0'
+                sshagent(['aws-rem']){
+                    sh "ssh -o StrictHostKeyChecking=no ecr-user@54.74.229.75 ${dockerRun}"
+                }
+            }
+        }
+
     }
     post {
         always {
