@@ -19,13 +19,13 @@ pipeline {
                 }
             }
         }
-        //stage('SonarQube Testing') {
-        //    steps {
-        //        withSonarQubeEnv('SonarQube Scanner') {
-        //            bat "mvn -Dsonar.qualitygate=true sonar:sonar"
-        //        }
-        //    }
-        //}
+        stage('Sonar8.2') {
+            steps {
+                withSonarQubeEnv('SonarQube Scanner') {
+                    bat "mvn -Dsonar.qualitygate=true sonar:sonar"
+                }
+            }
+        }
         stage("Deploy"){
             steps{
                 bat "mvn clean package"
