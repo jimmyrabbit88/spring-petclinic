@@ -28,11 +28,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Email Build Status'){
-                    steps{
-                        emailext to: 'jasondowling88@gmail.com', body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-                    }
-                }
+
             }
         }
 
@@ -70,6 +66,11 @@ pipeline {
 
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@34.244.114.135 docker run -p 8080:8080 -d --name pet_clinic jimmyrabbit88/pet_clinic_1:2.0.0"
                 }
+            }
+        }
+        stage('Email Build Status'){
+            steps{
+                emailext to: 'jasondowling88@gmail.com', body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
         }
 
