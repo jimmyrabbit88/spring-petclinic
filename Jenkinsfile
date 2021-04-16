@@ -4,9 +4,11 @@ pipeline {
 
     stages {
         stage("Build") {
-            steps{
-                bat "mvn -version"
-                bat "mvn clean package"
+            node{
+                steps{
+                    bat "mvn -version"
+                    bat "mvn clean package"
+                }
             }
         }
         stage("Test"){
