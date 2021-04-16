@@ -3,8 +3,8 @@ pipeline {
 
 
     stages {
-        stage("Build") {
-            node{
+        node {
+            stage("Build") {
                 steps{
                     bat "mvn -version"
                     bat "mvn clean package"
