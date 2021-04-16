@@ -19,9 +19,9 @@ pipeline {
                 }
             }
         }
-        stage('Sonar8.2') {
+        stage('SonarQube') {
             steps {
-                withSonarQubeEnv('SonarQube Scanner') {
+                withSonarQubeEnv('Sonar8.2') {
                     bat "mvn -Dsonar.qualitygate=true sonar:sonar"
                 }
             }
