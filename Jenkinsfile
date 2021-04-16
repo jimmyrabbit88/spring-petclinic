@@ -10,19 +10,23 @@ pipeline {
             }
         }
         stage("Test"){
-            steps{
-                bat 'mvn test'
-            }
-            post{
-                always{
-                    junit '**/target/surefire-reports/TEST-*.xml'
+            parallel {
+                stage('junit'){
+                    steps{
+                        bat 'mvn test'
+                    }
+                    post{
+                        always{
+                            junit '**/target/surefire-reports/TEST-*.xml'
+                        }
+                    }
                 }
-            }
-        }
-        stage('SonarQube') {
-            steps {
-                withSonarQubeEnv('Sonar8.2') {
-                    bat "mvn -Dsonar.qualitygate=true sonar:sonar"
+                stage('sonar'){
+                    steps {
+                        withSonarQubeEnv('Sonar8.2') {
+                            bat "mvn -Dsonar.qualitygate=true sonar:sonar"
+                        }
+                    }
                 }
             }
         }
