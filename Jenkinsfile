@@ -1,7 +1,5 @@
 pipeline {
     agent any
-
-
     stages {
         stage("Compile") {
             steps{
@@ -9,6 +7,12 @@ pipeline {
                 bat "mvn clean compile"
             }
         }
+        stage("Package") {
+                    steps{
+                        bat "mvn -version"
+                        bat "mvn clean package"
+                    }
+                }
         stage("Tests"){
             parallel {
                 stage('junit'){
