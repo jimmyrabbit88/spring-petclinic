@@ -9,7 +9,7 @@ pipeline {
                 bat "mvn clean package"
             }
         }
-        stage("Test"){
+        stage("Tests"){
             parallel {
                 stage('junit'){
                     steps{
@@ -28,7 +28,6 @@ pipeline {
                         }
                     }
                 }
-
             }
         }
 
@@ -53,7 +52,6 @@ pipeline {
                     bat "docker login -u jimmyrabbit88 -p ${dockerHubPwd}"
                 }
                 bat 'docker push jimmyrabbit88/pet_clinic_1:2.0.0'
-
             }
         }
 
