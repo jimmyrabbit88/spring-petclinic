@@ -3,10 +3,10 @@ pipeline {
 
 
     stages {
-        stage("Build") {
+        stage("Compile") {
             steps{
                 bat "mvn -version"
-                bat "mvn clean package"
+                bat "mvn clean compile"
             }
         }
         stage("Tests"){
@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-        stage("Deploy"){
+        stage("Build Artifact"){
             steps{
                 bat "mvn clean package"
             }
