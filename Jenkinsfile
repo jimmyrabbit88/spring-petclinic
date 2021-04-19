@@ -51,7 +51,7 @@ pipeline {
                     bat "docker login -u paulcaff -p paul3112!"
                 }
 //                bat 'docker push jimmyrabbit88/pet_clinic_1:2.0.0'
-                bat 'docker push paulcaff/petclinic_1:2.0.0'
+                bat 'docker push paulcaff/petclinic:2.0.0'
             }
         }
 
